@@ -15,7 +15,7 @@ public class AuthorController {
 
     @GetMapping
     public List<Author> listAll() {
-        return repository.findAllWithBooks();
+        return repository.findAllWithBooks(); 
     }
 
     @PostMapping

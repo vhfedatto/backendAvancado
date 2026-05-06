@@ -15,6 +15,6 @@ public class Author {
     private String cpf;
     private Double annualIncome;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // troquei EAGER por LAZY - evita que o Hibernate tente carregar a coleção sempre por padrão.
     private List<Book> books;
 }
