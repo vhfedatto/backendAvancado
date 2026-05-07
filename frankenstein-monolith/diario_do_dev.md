@@ -35,4 +35,27 @@ DELETE /authors/1 com token de admin -> 200 OK
 
 - Observação prática: para o teste no PowerShell funcionar, precisei salvar o token em variável antes de mandar no header `Authorization`.
 
+---
+
 ## Task 03
+
+- Refatorei o `AuthorController` para ele parar de carregar regra de negócio. Agora ele só recebe a requisição HTTP e delega para `AuthorService`.
+- Criei a camada de service com `AuthorService`, além das classes `CpfValidator` e `IncomeTaxCalculator`, para aplicar melhor o SRP e tirar validação/cálculo de dentro do controller.
+- Passei a usar DTOs com `record`: `AuthorRequest`, `AuthorResponse`, `BookRequest` e `BookResponse`. Com isso, a API parou de expor a entidade JPA `Author` diretamente.
+
+- No `AuthorService`, centralizei:
+  - validação de CPF
+  - cálculo da renda ajustada
+  - conversão entre DTO e entidade
+  - associação dos livros com o autor antes do save
+
+- Também deixei comentários curtos no código para mostrar o raciocínio e facilitar a leitura rápida.
+
+- Depois aprofundei um pouco mais a ideia de hexagonal no fluxo de autores:
+  - `adapter.in.web.AuthorController` virou o adaptador de entrada HTTP
+  - `application.port.in.AuthorUseCase` virou a porta de entrada
+  - `application.service.AuthorApplicationService` virou o caso de uso
+  - `application.port.out.AuthorPersistencePort` virou a porta de saída
+  - `adapter.out.persistence.AuthorPersistenceAdapter` + `AuthorJpaRepository` viraram o adaptador de persistência
+  - `domain.service.CpfValidator` e `domain.service.IncomeTaxCalculator` ficaram mais claramente no lado da regra de negócio
+- Ou seja: não ficou uma hexagonal "gigante", mas a separação entre entrada, aplicação, domínio e saída ficou bem mais explícita.
