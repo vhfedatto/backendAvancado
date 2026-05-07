@@ -1,6 +1,15 @@
 C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\model\Author.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\repository\AuthorRepository.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\model\AppUser.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\config\JwtAuthenticationFilter.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\dto\AuthRequest.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\service\JwtService.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\dto\AuthResponse.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\config\SecurityConfig.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\service\CustomUserDetailsService.java
 C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\controller\AuthorController.java
 C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\FrankensteinApplication.java
-C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\repository\AuthorRepository.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\model\Role.java
 C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\model\Book.java
-C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\config\SecurityConfig.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\controller\AuthController.java
+C:\Users\guguf\3D Objects\GitHub-repositorios\projetos\backendAvancado\frankenstein-monolith\src\main\java\com\example\frankenstein\repository\UserRepository.java

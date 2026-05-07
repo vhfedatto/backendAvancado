@@ -20,3 +20,19 @@ Hibernate: select distinct a1_0.id,a1_0.annual_income,b1_0.author_id,b1_0.id,b1_
 
 ## Task 02
 
+- Implementei autenticação com JWT, com login em `POST /auth/login`, filtro para ler `Authorization: Bearer <token>` e validação do usuário pelo banco H2.
+- Removi o usuário hardcoded em memória e passei a usar `app_user` no banco, com senha em hash BCrypt e roles `ADMIN` / `USER`.
+- Corrigi o `JwtService` para usar a chave do `application.properties` como texto puro. Antes disso, o login quebrava porque o código tentava decodificar a chave como Base64.
+- Ajustei a segurança para deixar `POST /auth/login` público, exigir autenticação no restante da API e restringir `DELETE /authors/{id}` para `ADMIN`.
+- Validação prática dos testes:
+
+```bash
+POST /auth/login com admin/admin123 -> 200 OK + token
+DELETE /authors/1 sem token -> 403/401 esperado pelo fluxo de segurança
+DELETE /authors/1 com token de user -> 403 Forbidden
+DELETE /authors/1 com token de admin -> 200 OK
+```
+
+- Observação prática: para o teste no PowerShell funcionar, precisei salvar o token em variável antes de mandar no header `Authorization`.
+
+## Task 03

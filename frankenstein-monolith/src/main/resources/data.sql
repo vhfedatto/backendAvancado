@@ -136,3 +136,8 @@ INSERT INTO book (id, title, author_id) VALUES (84, 'A Study in Scarlet', 49);
 INSERT INTO book (id, title, author_id) VALUES (85, 'The Hound of the Baskervilles', 49);
 INSERT INTO book (id, title, author_id) VALUES (86, 'Ficciones', 50);
 INSERT INTO book (id, title, author_id) VALUES (87, 'The Aleph', 50);
+
+INSERT INTO app_user (id, username, password, user_role) VALUES
+(1, 'admin', '$2a$10$9/BxQQVBsemJ0HZ2kFZOkex7OVaKWBKIFAyz2w0/.YpmuAy2uCh7i', 'ADMIN');
+INSERT INTO app_user (id, username, password, user_role) VALUES
+(2, 'user', '$2a$10$qxlkbM78a77Pa1ECemp/AeQRoicJyUCkyEBORGLSYIsce8QBcyiGW', 'USER');
