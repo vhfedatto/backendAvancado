@@ -13,7 +13,8 @@ export interface Book {
     providedIn: 'root'
 })
 export class BookService {
-    private apiUrl = 'http://localhost:8080/api/v1/books'; // Redesigned path
+    // Este contrato precisa acompanhar o endpoint Spring exposto em /api/v1/books.
+    private apiUrl = 'http://localhost:8080/api/v1/books';
 
     constructor(private http: HttpClient) { }
 

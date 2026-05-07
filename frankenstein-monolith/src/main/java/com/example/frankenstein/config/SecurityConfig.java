@@ -4,6 +4,7 @@ import com.example.frankenstein.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -34,6 +35,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            // O Angular roda em localhost:4200, então o navegador precisa do CORS ativo.
+            .cors(Customizer.withDefaults())
             .csrf(csrf -> csrf.disable())
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             // JWT é stateless -> a API não deve criar sessão no servidor.
@@ -43,6 +46,8 @@ public class SecurityConfig {
                 .requestMatchers("/h2-console/**").permitAll()
                 // O login precisa ficar público para o cliente conseguir pegar o token.
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                // A listagem de livros precisa ser pública para a tela /books funcionar sem fluxo de login no front.
+                .requestMatchers(HttpMethod.GET, "/api/v1/books/**").permitAll()
                 // A exigência da task está aqui: deletar autor só com role ADMIN.
                 .requestMatchers(HttpMethod.DELETE, "/authors/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

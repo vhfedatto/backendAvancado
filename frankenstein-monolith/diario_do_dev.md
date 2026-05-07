@@ -59,3 +59,39 @@ DELETE /authors/1 com token de admin -> 200 OK
   - `adapter.out.persistence.AuthorPersistenceAdapter` + `AuthorJpaRepository` viraram o adaptador de persistência
   - `domain.service.CpfValidator` e `domain.service.IncomeTaxCalculator` ficaram mais claramente no lado da regra de negócio
 - Ou seja: não ficou uma hexagonal "gigante", mas a separação entre entrada, aplicação, domínio e saída ficou bem mais explícita.
+
+---
+
+## Integração Front-End: Books
+
+- Como o front novo tinha uma tela `/books`, faltava um endpoint real no backend para essa tela deixar de quebrar no navegador.
+- Implementei a rota `GET /api/v1/books` no backend, seguindo o mesmo espírito da separação hexagonal já aplicada em autores:
+  - `application.port.in.BookUseCase`
+  - `application.service.BookApplicationService`
+  - `application.port.out.BookPersistencePort`
+  - `adapter.out.persistence.BookPersistenceAdapter`
+  - `adapter.out.persistence.BookJpaRepository`
+  - `adapter.in.web.BookController`
+- Mantive a resposta enxuta com `BookResponse(id, title)`, porque era isso que a tela de livros precisava para renderizar.
+- Ajustei a segurança para liberar `GET /api/v1/books` sem JWT, já que o front ainda não tem fluxo de login integrado para navegar na listagem.
+- Também ativei CORS para `http://localhost:4200`, senão o browser bloquearia a chamada mesmo com o endpoint funcionando no backend.
+- No Angular:
+  - mantive `BookService` apontando para `http://localhost:8080/api/v1/books`
+  - ajustei o `BookListComponent` para trocar o estado de loading pela lista real de livros quando a API responde
+  - a tela de livros deixou de ficar presa só nos skeletons/placeholders
+
+- Validação prática:
+
+```bash
+mvn test
+npm run build
+```
+
+- O teste de integração novo garante o contrato mínimo da tela:
+  - `GET /api/v1/books` responde `200 OK`
+  - o payload traz ao menos `id` e `title`
+
+- Observação importante:
+  - a tela de autores ainda está usando mock local no front
+  - então a integração completa front-back ainda não está 100% fechada em autores
+  - mas a navegação e a listagem de livros agora passam por backend real

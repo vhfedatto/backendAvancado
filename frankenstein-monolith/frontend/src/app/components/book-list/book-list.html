@@ -12,13 +12,19 @@
         </div>
     </div>
 
-    <!-- Skeletons (Placeholders) -->
-    <div class="grid">
+    <div *ngIf="isLoading" class="grid">
         <div class="glass-card skeleton-card" *ngFor="let i of [1,2,3,4,5,6]">
             <div class="skeleton-line title"></div>
             <div class="skeleton-line text"></div>
             <div class="skeleton-line text short"></div>
             <div class="skeleton-btn"></div>
+        </div>
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage" class="grid">
+        <div class="glass-card" *ngFor="let book of books">
+            <h2>{{ book.title }}</h2>
+            <p class="subtitle">Book ID #{{ book.id }}</p>
         </div>
     </div>
 </div>
