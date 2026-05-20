@@ -75,7 +75,7 @@ DELETE /authors/1 com token de admin -> 200 OK
 - Mantive a resposta enxuta com `BookResponse(id, title)`, porque era isso que a tela de livros precisava para renderizar.
 - Ajustei a segurança para liberar `GET /api/v1/books` sem JWT, já que o front ainda não tem fluxo de login integrado para navegar na listagem.
 - Também ativei CORS para `http://localhost:4200`, senão o browser bloquearia a chamada mesmo com o endpoint funcionando no backend.
-- No Angular:
+- No Angular
   - mantive `BookService` apontando para `http://localhost:8080/api/v1/books`
   - ajustei o `BookListComponent` para trocar o estado de loading pela lista real de livros quando a API responde
   - a tela de livros deixou de ficar presa só nos skeletons/placeholders
